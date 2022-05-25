@@ -22,13 +22,6 @@ const app = require('./app')
 
 
 
-
-
-
-
-
-
-
 // PORT LISTENER 
 let PORT = 3000;
 

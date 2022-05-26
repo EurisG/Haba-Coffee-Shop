@@ -85,3 +85,18 @@ exports.updateProduct = async (request, response) => {
         })
     }
 };
+// delete a single product 
+exports.deleteProduct = async (request, reponse) => {
+    try {
+        await Coffee.findByIdAndDelete(request.params.id)
+        response.status(204).json({
+            status: "success",
+            data: {},
+        });
+    } catch(error) {
+        response.status(500).json({
+            status: "error",
+            message: error
+        })
+    }
+};

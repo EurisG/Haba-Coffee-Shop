@@ -49,3 +49,22 @@ exports.createProduct = async (request, response) => {
         }
     
 };
+// Retrieve single product 
+exports.singleProduct = async (request, response) => {
+    try {
+        const coffee = await Coffee.findById(request.params.id);
+
+        // send response 
+        response.status(200).json({
+            status: "success",
+        data: {
+            coffee: coffee,
+        } ,
+     });
+    } catch(error) {
+        response.status(500).json({
+            status: "error",
+            message: error,
+        })
+    }
+};

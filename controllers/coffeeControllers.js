@@ -68,3 +68,20 @@ exports.singleProduct = async (request, response) => {
         })
     }
 };
+// Updates a single product data  
+exports.updateProduct = async (request, response) => {
+    try {
+        const updateProduct = await Coffee.findByIdAndUpdate(request.params.id, request.body, {new: true});
+        response.status(500).json({
+            status:"fail",
+            data: {
+                updateProduct,
+            },
+        });
+    } catch(error) {
+        response.status(500).json({
+            status: "fail",
+            message: error
+        })
+    }
+};

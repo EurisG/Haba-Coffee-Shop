@@ -1,3 +1,8 @@
+// IMPORT EPRESS APP 
+const express = require('express');
+
+
+
 // IMPORT MONGOOSE TO CONNECT TO DATABASE 
 const mongoose = require('mongoose');
 
@@ -10,14 +15,16 @@ dotenv.config({
     path: "./config.env"
 });
 
+const app = require('./app');
+
 console.log(process.env);
 
-// IMPORT EPRESS APP 
-const app = require('./app')
 
 
 
-
+// app.set("view engine", "jsx");
+// app.engine("jsx", require("express-react-views").createEngine());
+// app.use(express.urlencoded({extended: false}));
 
 
 

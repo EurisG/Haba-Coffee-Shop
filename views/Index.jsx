@@ -8,9 +8,13 @@ class Index extends React.Component {
             return(
                     <div>
                         <h1>Haba's Coffee Shop</h1>
+
+                        
                         <nav>
-                 <a href="/views/new.jsx">Create A New</a>
-             </nav>
+                 <a href={`/views/New.jsx`}>Create A New Product</a><br />
+                 <a href={`/views/Single.jsx`}>single Product</a>
+                 
+                        </nav>
 
                     </div>
 

@@ -8,13 +8,8 @@ exports.getAllProduct = async (req,res) => {
     try{
         const allProducts = await Product.find()
         // send response 
-        // res.render("Index", {} )
-        res.status(200).json({
-            status: 'success',
-            data: {
-                allProducts
-            },
-        });
+        res.render("Index");
+   
     } catch(error) {
         res.status(500).json({
             status: "error",
@@ -37,6 +32,7 @@ exports.createProduct = (req, res) => {
     const newProduct = await Product.create(req.body);
     try {
   // send reponse 
+      // res.render('New');
     res.status(201).json({
       status: "success",
       data: {
@@ -56,13 +52,13 @@ exports.createProduct = (req, res) => {
   exports.getSingleProduct = async (req, res) => {
     try {
     const getSingleProduct = await Product.findById(req.params.id);
-  
-      res.status(200).json({
-        status: "success",
-        data: {
-          learner: learner,
-        },
-      });
+      res.render('Single');
+      // res.status(200).json({
+      //   status: "success",
+      //   data: {
+      //     learner: learner,
+      //   },
+      // });
     } catch(error) {
       res.status(500).json({
         status: "error",

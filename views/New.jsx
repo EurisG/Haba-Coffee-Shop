@@ -1,4 +1,5 @@
 const React = require('react')
+const coffee = require('../models/coffeeModel');
 
 class New extends React.Component{
 
@@ -6,7 +7,7 @@ class New extends React.Component{
 
         return(
             <>
-            <form action="/modules/coffeeModule.js" method="POST">
+            <form action="/models/coffeeModel.js" method="POST">
                  Product Name: <input type="text" name="name" placeholder='POST'/><br/>
                  Price: <input type="text" name="color" placeholder='Add' /><br/>
                  Ingredients: <input type="text" name="name" placeholder='POST'/><br/>
@@ -19,4 +20,4 @@ class New extends React.Component{
 
 }
 
-module.exports = New
+module.exports = New;

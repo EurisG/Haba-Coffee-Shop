@@ -1,18 +1,11 @@
 const express = require('express');
-
-const coffeeRouter = require('./routes/coffeeRoutes');
-
-
 const app = express();
+
+const productRouter = require('./routes/coffeeRoutes');
+
 app.use(express.json());
-app.set("view engine", "jsx");
-app.engine("jsx", require("express-react-views").createEngine());
 
-// app.use(express.json());
-
-
-app.use("/coffee", coffeeRouter);
-
-
+// middleware handling our routes 
+app.use('/home', productRouter);
 
 module.exports = app;

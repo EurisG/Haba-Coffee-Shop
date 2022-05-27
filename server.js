@@ -1,30 +1,20 @@
-// IMPORT EPRESS APP 
-const express = require('express');
-
-
-
-// IMPORT MONGOOSE TO CONNECT TO DATABASE 
 const mongoose = require('mongoose');
 
-// IMPORT DOTENV IN ORDER TO CONNECT TO OUR DATABASE
 const dotenv = require('dotenv');
 
-
-// use dotenv to connect to our config file  
 dotenv.config({
-    path: "./config.env"
+    path: `${__dirname}/config.env`
 });
-
-const app = require('./app');
 
 console.log(process.env);
 
+const app = require('./app');
 
+// const coffeeRoutes = require('./routes/coffeeRoutes')
+const cluster0 = mongoose.connect(process.env.DATABASE.replace("<password>", process.env.PASSWORD)).then(() => {
+    console.log("DATABASE IS UP AND RUNNING..");
+});
 
-
-// app.set("view engine", "jsx");
-// app.engine("jsx", require("express-react-views").createEngine());
-// app.use(express.urlencoded({extended: false}));
 
 
 

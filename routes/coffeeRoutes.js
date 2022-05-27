@@ -1,12 +1,10 @@
 const express = require('express');
 
-const coffeeController = require('./../controllers/coffeeControllers')
+const productController = require('../controllers/coffeeControllers');
 
 const router = express.Router();
 
-
-// created routes for every controller 
-router.route('/').get(coffeeController.getAllCoffee).post(coffeeController.createProduct);
-router.route('/:id').get(coffeeController.singleProduct).patch(coffeeController.updateProduct).delete(coffeeController.deleteProduct);
+router.route('/').get(productController.getAllProduct).post(productController.createProduct);
+router.route("/:id").get(productController.getSingleProduct).patch(productController.updateProduct).delete(productController.deleteProduct);
 
 module.exports = router;

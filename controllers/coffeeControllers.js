@@ -1,104 +1,106 @@
-// const { request, response } = require('../app');
-const Coffee = require('./../modules/coffeeModule');
+// const { response } = require('../app');
+const Product = require('../models/coffeeModel');
 
-// Retrieve all coffee at once 
-exports.getAllCoffee = async (request, response) => {
-    try {
-        const coffee = await Coffee.find();
 
-        // send response 
-        // response.status(200).render({
-            
-        //     status: "success",
-        //     data: {
-        //         coffee: coffee,
-        //     },
-        // });
-        response.render('Index')
-    } catch(error) {
-        response.status(500).render({
-            status: "error",
-            message: error,
-        })
-    }
-};
-// Creates new product on page 
-exports.createProduct = async (request, response) => {
-   response.status(500).render({
-       status: "fail",
-       data: {
-           message: "undefined routes",
-       },
-   });
-};
-
-exports.createProduct = async (request, response) => {
-        // create new product 
-        const newProduct = await Coffee.create(request.body);
-        try{
-            // send response 
-            response.status(201).render({
-                status: "success",
-                data: {
-                    newProduct: newProduct,
-                },
-            });
-        } catch(error) {
-            response.status(500).render({
-                status: "error",
-                message: error,
-            })
-        }
+// Getting all products  
+exports.getAllProduct = async (req,res) => {
     
-};
-// Retrieve single product 
-exports.singleProduct = async (request, response) => {
-    try {
-        const coffee = await Coffee.findById(request.params.id);
-
+    try{
+        const allProducts = await Product.find()
         // send response 
-        response.status(200).render({
-            status: "success",
-        data: {
-            coffee: coffee,
-        } ,
-     });
-    } catch(error) {
-        response.status(500).render({
-            status: "error",
-            message: error,
-        })
-    }
-};
-// Updates a single product data  
-exports.updateProduct = async (request, response) => {
-    try {
-        const updateProduct = await Coffee.findByIdAndUpdate(request.params.id, request.body, {new: true});
-        response.status(500).render({
-            status:"fail",
+        // res.render("Index", {} )
+        res.status(200).json({
+            status: 'success',
             data: {
-                updateProduct,
+                allProducts
             },
         });
     } catch(error) {
-        response.status(500).render({
-            status: "fail",
-            message: error
-        })
-    }
-};
-// delete a single product 
-exports.deleteProduct = async (request, reponse) => {
-    try {
-        await Coffee.findByIdAndDelete(request.params.id)
-        response.status(204).render({
-            status: "success",
-            data: {},
-        });
-    } catch(error) {
-        response.status(500).render({
+        res.status(500).json({
             status: "error",
-            message: error
-        })
+            message: error,
+        });
     }
+
 };
+exports.createProduct = (req, res) => {
+    res.status(500).json({
+      status: "fail",
+      data: {
+        message: "undefined routes",
+      },
+    });
+  };
+  
+  exports.createProduct = async (req, res) => {
+    // lets create new product
+    const newProduct = await Product.create(req.body);
+    try {
+  // send reponse 
+    res.status(201).json({
+      status: "success",
+      data: {
+        newLearner: newLearner,
+      },
+    });
+    } catch(error) {
+      res.status(500).json({
+        status: "error",
+        message: error,
+      })
+    }
+  };
+  
+  
+  // This controller is to retrieve a single product
+  exports.getSingleProduct = async (req, res) => {
+    try {
+    const getSingleProduct = await Product.findById(req.params.id);
+  
+      res.status(200).json({
+        status: "success",
+        data: {
+          learner: learner,
+        },
+      });
+    } catch(error) {
+      res.status(500).json({
+        status: "error",
+        message: error,
+      });
+    }
+    };
+    // This controller is to update a single product 
+  exports.updateProduct = async (req, res) => {
+    try {
+      const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true});
+      res.status(500).json({
+        status: "fail",
+        data: {
+          updatedProduct,
+        },
+      });
+    } catch(error) {
+      res.status(500).json({
+        status: "fail",
+        message: error
+      })
+    }
+    };
+  
+  // This controller is to delete a single product
+  exports.deleteProduct = async (req, res) => {
+    try {
+  
+    await Product.findByIdAndDelete(req.params.id)
+    res.status(204).json({
+      status: "success",
+      data: {},
+    });
+    } catch(error) {
+      res.status(500).json({
+        status: "error",
+        message: error
+      })
+    }
+  };

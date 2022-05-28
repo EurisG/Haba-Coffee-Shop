@@ -1,5 +1,5 @@
 const React = require('react')
-const coffee = require('../models/coffeeModel');
+const Coffee = require('../models/coffeeModel');
 
 class New extends React.Component{
 

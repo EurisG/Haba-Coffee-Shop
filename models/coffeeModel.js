@@ -13,8 +13,13 @@ const productSchema = new mongoose.Schema({
     productIngridients: {
         type: String,
     }
+
+    
 });
 
+
 const Coffee = mongoose.model("Coffee", productSchema);
+
+
 
 module.exports = Coffee;

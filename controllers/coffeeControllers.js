@@ -1,5 +1,7 @@
 // const { response } = require('../app');
-const Product = require('../models/coffeeModel');
+const { get } = require('express/lib/response');
+const app = require('../app');
+const Product = require('../models/coffee');
 
 
 // Getting all products  
@@ -7,7 +9,7 @@ exports.getAllProduct = async (req,res) => {
     
     try{
         const allProducts = await Product.find()
-        // send response 
+    //     // send response 
         res.render("Index");
    
     } catch(error) {
@@ -18,27 +20,30 @@ exports.getAllProduct = async (req,res) => {
     }
 
 };
-exports.createProduct = (req, res) => {
-    res.status(500).json({
-      status: "fail",
-      data: {
-        message: "undefined routes",
-      },
-    });
-  };
+exports.createProduct = async (req, res) => {
+try {
+  const createAProduct = await Product.find()
+  res.render("New");
+    // res.status(500).json({
+    //   status: "fail",
+    //   data: {
+    //     message: "undefined routes",
+    //   },
+    // });
   
-  exports.createProduct = async (req, res) => {
-    // lets create new product
-    const newProduct = await Product.create(req.body);
-    try {
-  // send reponse 
-      // res.render('New');
-    res.status(201).json({
-      status: "success",
-      data: {
-        newLearner: newLearner,
-      },
-    });
+  
+  // exports.createProduct = async (req, res) => {
+  //   // lets create new product
+  //   const newProduct = await Product.create(req.body);
+  //   try {
+  // // send reponse 
+  //     res.render('New');
+  //   // res.status(201).json({
+  //   //   status: "success",
+  //   //   data: {
+  //   //     newLearner: newLearner,
+  //   //   },
+  //   // });
     } catch(error) {
       res.status(500).json({
         status: "error",
@@ -51,7 +56,7 @@ exports.createProduct = (req, res) => {
   // This controller is to retrieve a single product
   exports.getSingleProduct = async (req, res) => {
     try {
-    const getSingleProduct = await Product.findById(req.params.id);
+    // const singleProduct = await Product.findById(req.params.id);
       res.render('Single');
       // res.status(200).json({
       //   status: "success",
@@ -70,12 +75,13 @@ exports.createProduct = (req, res) => {
   exports.updateProduct = async (req, res) => {
     try {
       const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true});
-      res.status(500).json({
-        status: "fail",
-        data: {
-          updatedProduct,
-        },
-      });
+      res.render('Index')
+      // res.status(500).json({
+      //   status: "fail",
+      //   data: {
+      //     updatedProduct,
+      //   },
+      // });
     } catch(error) {
       res.status(500).json({
         status: "fail",

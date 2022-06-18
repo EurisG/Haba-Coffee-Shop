@@ -8,5 +8,6 @@ app.use(express.json());
 
 // middleware handling our routes 
 app.use('/home', productRouter);
+// app.use('/', productRouter)
 
 module.exports = app;

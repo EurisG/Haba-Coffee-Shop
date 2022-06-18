@@ -97,7 +97,7 @@ class Index extends React.Component {
                         return(
                             <li style={myProd}>
                                   {/* <img src={product.img}></img><br /> */}
-                             <a style={proText} href={`/home/New${i}`}><br />{capitalize(product.name)}</a>{' '}<br />Price:{" "}${product.price}
+                             <a style={proText} href={`/home/:id${i}`}><br />{capitalize(product.name)}</a>{' '}<br />Price:{" "}${product.price}
                                 <br />
                             </li>
                            

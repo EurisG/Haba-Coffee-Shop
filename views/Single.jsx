@@ -70,9 +70,9 @@ class Single extends React.Component {
 
             render(){
                 const  product = this.props.product;
-        console.log(product);
-        product.img.includes('.jpg'),('.jpeg')? product.img: product.img += '.jpg';
-        console.log(product.img)
+        // console.log(product);
+        // product.img.includes('.jpg'),('.jpeg')? product.img: product.img += '.jpg';
+        // console.log(product.img)
                 return(
                         <div>
 
@@ -86,7 +86,7 @@ class Single extends React.Component {
                 <br />
                 
                 <br />
-                <img style={myPic} src={product.img}></img>
+                <img src={product.img}></img><br />
                 <br />
                 <h3 style={myProd}>The {product.name}{' '}cost: {' '} ${product.price}</h3>
                 <div  >

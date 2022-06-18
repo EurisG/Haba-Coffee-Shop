@@ -1,6 +1,6 @@
 const React = require('react')
 // const coffee = require('../models/coffee');
-const product = require('../models/product')
+// const product = require('../models/product')
 
 class New extends React.Component{
 

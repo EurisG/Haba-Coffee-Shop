@@ -3,6 +3,20 @@ const { get } = require('express/lib/response');
 const app = require('../app');
 const Product = require('../models/coffee');
 
+exports.welcomePage = async (req,res) => {
+  try{
+    // const welcome = await Product.find()
+//     // send response 
+    res.redirect("/views/Welcome");
+
+} catch(error) {
+    res.status(500).json({
+        status: "error",
+        message: error,
+    });
+}
+
+};
 
 // Getting all products  
 exports.getAllProduct = async (req,res) => {
@@ -22,8 +36,8 @@ exports.getAllProduct = async (req,res) => {
 };
 exports.createProduct = async (req, res) => {
 try {
-  const createAProduct = await Product.find()
-  res.render("New");
+  const createAProduct = await Product.create(req.body);
+  res.redirect("/views/New");
     // res.status(500).json({
     //   status: "fail",
     //   data: {
@@ -56,8 +70,8 @@ try {
   // This controller is to retrieve a single product
   exports.getSingleProduct = async (req, res) => {
     try {
-    // const singleProduct = await Product.findById(req.params.id);
-      res.render('Single');
+    const singleProduct = await Product.findById(req.params.id);
+      res.redirect('Single');
       // res.status(200).json({
       //   status: "success",
       //   data: {
